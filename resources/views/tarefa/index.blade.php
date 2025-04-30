@@ -5,7 +5,17 @@
     <div class="row justify-content-center">
         <div class="col-md-10">
             <div class="card">
-                <div class="card-header">Tarefas</div>
+                <div class="card-header"> 		
+
+									<a class="btn btn-outline-secondary mr-1" role="button" href="{{ route('tarefa.index') }}" >
+										Ver Tarefas
+									</a>
+
+									<a class="btn btn-outline-secondary float-right" role="button" href="{{ route('tarefa.create') }}" >
+										Nova Tarefa
+									</a>
+
+								</div>
                 <div class="card-body">
 									<table class="table table-striped table-hover">
 										<thead>
