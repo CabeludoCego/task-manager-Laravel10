@@ -31,7 +31,12 @@
 														</a>
 													</td>
 													<td>
-														<a href="{{ route('tarefa.destroy', $tarefa['id']) }}">
+														<form id="form_{{ $tarefa['id'] }}" method="post"
+															action="{{ route('tarefa.destroy', ['tarefa' => $tarefa->id]) }}" >
+															@method('DELETE')
+															@csrf
+														</form>
+														<a href="#" onclick="document.getElementById('form_{{ $tarefa['id'] }}').submit()">
 															<img src="{{ asset('storage/icons/deleteIcon.svg') }}">
 														</a>
 													</td>
