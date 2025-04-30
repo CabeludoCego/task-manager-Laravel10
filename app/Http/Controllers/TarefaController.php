@@ -19,15 +19,11 @@ public function __construct(){
      */
     public function index()
     {
-        if(Auth::check()) {
-            $id = Auth::user()->id;
-            $name = Auth::user()->name;
-            // $name = auth()->user()->name;
-            return "Você está logado, $name de ID $id. ";
-        }
-        else {
-            return 'Você não está logado';
-        }
+        $user_id = auth()->user()->id;
+        // $tarefas = Tarefa::where('user_id', $user_id)->get();
+        $tarefas = Tarefa::where('user_id', $user_id)->paginate(5);
+        // dd($tarefas);
+        return view ('tarefa.index', ['tarefas' => $tarefas]);
     }
 
     /**
@@ -43,8 +39,12 @@ public function __construct(){
      */
     public function store(Request $request)
     {
-        // dd($request->all());
-        $tarefa = Tarefa::create($request->all());
+        // $dados = $request->all();
+
+        $dados = $request->all(['tarefa', 'data_limite']);
+        $dados['user_id'] = auth()->user()->id;
+
+        $tarefa = Tarefa::create($dados);
         return redirect()->route('tarefa.show', ['tarefa' => $tarefa->id]);
     }
 
@@ -53,7 +53,9 @@ public function __construct(){
      */
     public function show(Tarefa $tarefa)
     {
-        dd($tarefa->getAttributes());
+        return view('tarefa.show', ['tarefa' => $tarefa]);
+        // dd($tarefa->getAttributes());
+
     }
 
     /**
