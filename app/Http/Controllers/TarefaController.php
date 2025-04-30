@@ -23,7 +23,7 @@ public function __construct(){
             $id = Auth::user()->id;
             $name = Auth::user()->name;
             // $name = auth()->user()->name;
-            return "Você está logado, $name de ID $id.";
+            return "Você está logado, $name de ID $id. ";
         }
         else {
             return 'Você não está logado';
@@ -35,7 +35,7 @@ public function __construct(){
      */
     public function create()
     {
-        //
+        return view('tarefa.create');
     }
 
     /**
@@ -43,7 +43,9 @@ public function __construct(){
      */
     public function store(Request $request)
     {
-        //
+        // dd($request->all());
+        $tarefa = Tarefa::create($request->all());
+        return redirect()->route('tarefa.show', ['tarefa' => $tarefa->id]);
     }
 
     /**
@@ -51,7 +53,7 @@ public function __construct(){
      */
     public function show(Tarefa $tarefa)
     {
-        //
+        dd($tarefa->getAttributes());
     }
 
     /**
