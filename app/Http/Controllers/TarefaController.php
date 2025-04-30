@@ -22,6 +22,7 @@ public function __construct(){
         $user_id = auth()->user()->id;
         // $tarefas = Tarefa::where('user_id', $user_id)->get();
         $tarefas = Tarefa::where('user_id', $user_id)->paginate(5);
+
         // dd($tarefas);
         return view ('tarefa.index', ['tarefas' => $tarefas]);
     }
@@ -63,7 +64,11 @@ public function __construct(){
      */
     public function edit(Tarefa $tarefa)
     {
-        //
+        $user_id = auth()->user()->id; // Se usuário atual == criador da tarefa:
+        if ($tarefa->user_id !== $user_id) {
+            return view('acesso-negado');
+        };
+        return view('tarefa.edit', ['tarefa'=>$tarefa]);
     }
 
     /**
@@ -71,7 +76,12 @@ public function __construct(){
      */
     public function update(Request $request, Tarefa $tarefa)
     {
-        //
+        $user_id = auth()->user()->id; // Se usuário atual != criador da tarefa:
+        if ($tarefa->user_id !== $user_id) {
+            return view('acesso-negado');
+        }
+        $tarefa->update($request->all());
+        return redirect()->route('tarefa.show', ['tarefa' => $tarefa->id]);
     }
 
     /**
