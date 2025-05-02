@@ -11,4 +11,8 @@ class Tarefa extends Model
 
     protected $fillable = ['tarefa', 'data_limite', 'user_id'];
 
+    public function user() {
+        return $this->belongsTo('User');
+    }
+
 }
