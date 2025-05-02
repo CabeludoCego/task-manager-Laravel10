@@ -21,7 +21,11 @@ Route::get('/', function () {
 
 Auth::routes();
 
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/tarefa/export', [TarefaController::class, 'export'])
+    ->name('tarefa.export');  // Resource cria uma 'rota' dummy para export, que não existe.
+                              // Declarando antes, evitamos isso.
 
 Route::resource('tarefa', TarefaController::class);
     // ->middleware('verified');

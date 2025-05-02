@@ -6,16 +6,24 @@
         <div class="col-md-10">
             <div class="card">
                 <div class="card-header"> 		
-
-									<a class="btn btn-outline-secondary mr-1" role="button" href="{{ route('tarefa.index') }}" >
-										Ver Tarefas
-									</a>
-
-									<a class="btn btn-outline-secondary float-right" role="button" href="{{ route('tarefa.create') }}" >
-										Nova Tarefa
-									</a>
-
-								</div>
+					<div class="row">
+						<div class="col-4">
+							<a class="btn btn-outline-secondary float-left" role="button" href="{{ route('tarefa.index') }}" >
+								Ver Tarefas
+							</a>
+						</div>
+						<div class="col-4">
+							<a class="btn btn-outline-dark mr-1" role="button" href="{{ route('tarefa.export') }}" >
+								Baixar Tabela (.xlsx)
+							</a>
+						</div>
+						<div class="col-4">
+							<a class="btn btn-outline-secondary float-right" role="button" href="{{ route('tarefa.create') }}" >
+								Nova Tarefa
+							</a>
+						</div>
+					</div>
+				</div>
                 <div class="card-body">
 									<table class="table table-striped table-hover">
 										<thead>
