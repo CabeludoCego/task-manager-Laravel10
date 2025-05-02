@@ -44,6 +44,6 @@ class User extends Authenticatable
     ];
 
     public function tarefas() {  // 1:N
-        return $this->hasMany('Tarefa');
+        return $this->hasMany(Tarefa::class);
     }
 }
