@@ -23,7 +23,7 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/tarefa/export', [TarefaController::class, 'export'])
+Route::get('/tarefa/export/{extensao}', [TarefaController::class, 'export'])
     ->name('tarefa.export');  // Resource cria uma 'rota' dummy para export, que não existe.
                               // Declarando antes, evitamos isso.
 

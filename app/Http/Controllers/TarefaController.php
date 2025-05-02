@@ -100,8 +100,13 @@ public function __construct(){
         return redirect()->route('tarefa.index');
     }
     
-    public function export() 
+    public function export(string $extensao) 
     {
-        return Excel::download(new TarefasExport, 'lista_de_tarefas.xlsx');
+        if ($extensao == 'xlsx' || $extensao == 'csv'){
+            $filename = 'lista_de_tarefas.'.$extensao;
+        } else {
+            return redirect()->route('tarefa.index');
+        }
+        return Excel::download(new TarefasExport, $filename);
     }
 }
